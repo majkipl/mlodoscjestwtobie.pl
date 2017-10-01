@@ -1,0 +1,29 @@
+FROM php:7.1-apache
+LABEL authors=${DOCKER_AUTHOR}
+
+WORKDIR /var/www/html
+
+COPY . .
+
+COPY docker/apt/sources.list /etc/apt/sources.list
+
+RUN apt-get update -y
+RUN apt-get install -y --allow-unauthenticated zip
+RUN apt-get install -y --allow-unauthenticated unzip
+RUN apt-get install -y --allow-unauthenticated libpng-dev
+RUN apt-get install -y --allow-unauthenticated libjpeg-dev
+
+RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/include/
+RUN docker-php-ext-install pdo pdo_mysql bcmath gd
+
+COPY docker/php/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
+COPY docker/php/php.ini /usr/local/etc/php/php.ini-development
+COPY docker/php/php.ini /usr/local/etc/php/php.ini-production
+COPY --from=composer:1.5.2 /usr/bin/composer /usr/bin/composer
+
+RUN chown -R www-data:www-data /var/www/html
+
+RUN a2enmod rewrite
+
+ENTRYPOINT ["docker/php/entrypoint.sh"]

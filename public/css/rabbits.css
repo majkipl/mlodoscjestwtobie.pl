@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Rabbits Hyper';
+    src: url('../fonts/rabbits/tt_rabbits_hyper-webfont.woff2') format('woff2'),
+         url('../fonts/rabbits/tt_rabbits_hyper-webfont.woff') format('woff'),
+         url('../fonts/rabbits/tt_rabbits_hyper-webfont.ttf') format('truetype'),
+         url('../fonts/rabbits/tt_rabbits_hyper-webfont.svg#tt_rabbitshyper') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

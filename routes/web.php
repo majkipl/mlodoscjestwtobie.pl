@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\HomeController;
+
+Auth::routes();
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', [HomeController::class, 'index'])->name('front.home');
+Route::get('/nagrody', [HomeController::class, 'index'])->name('front.home');
+Route::get('/zgloszenia', [HomeController::class, 'index'])->name('front.home');
+Route::get('/zgloszenia-tygodnia', [HomeController::class, 'index'])->name('front.home');
+Route::get('/nasze-produkty', [HomeController::class, 'index'])->name('front.home');
+Route::get('/kontakt', [HomeController::class, 'index'])->name('front.home');

@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PolicyController;
 
 Auth::routes();
 
@@ -25,3 +26,4 @@ Route::get('/zgloszenia', [HomeController::class, 'index'])->name('front.home');
 Route::get('/zgloszenia-tygodnia', [HomeController::class, 'index'])->name('front.home');
 Route::get('/nasze-produkty', [HomeController::class, 'index'])->name('front.home');
 Route::get('/kontakt', [HomeController::class, 'index'])->name('front.home');
+Route::get('/polityka-prywatnosci', [PolicyController::class, 'index'])->name('front.policy');

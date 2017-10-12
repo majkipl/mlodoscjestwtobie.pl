@@ -52,6 +52,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-1.11.3.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.ui.core.1.10.3.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.ui.widget.1.10.3.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.ui.mouse.1.10.3.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.ui.draggable.1.10.3.min.js') }}" defer></script>
     <script src="{{ asset('js/selectbox/jquery.selectbox-0.2.js') }}" defer></script>
     <script src="{{ asset('js/owl/owl.carousel.min.js') }}" defer></script>
     <script src="{{ asset('js/jkit/jquery.jkit.1.2.16.js') }}" defer></script>
@@ -59,6 +63,8 @@
     <script src="{{ asset('js/slidepushmenu/modernizr.custom.js') }}" defer></script>
     <script src="{{ asset('js/mcustomscrollbar/jquery.mCustomScrollbar.js') }}" defer></script>
     <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+    <script src="{{ asset('js/moment/min/moment-with-locales.min.js') }}" defer></script>
+    <script src="{{ asset('js/datetimepicker/bootstrap-datetimepicker.min.js') }}" defer></script>
     <script src="{{ asset('js/starter.js') }}" defer></script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
@@ -80,6 +86,7 @@
     <link rel="stylesheet" href="{{ asset('css/mcustomscrollbar/jquery.mCustomScrollbar.css') }}" type="text/css"
           media="screen"/>
     <link rel="stylesheet" href="{{ asset('css/hamburger/hamburgers.min.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/datetimepicker/bootstrap-datetimepicker.min.css') }}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="{{ asset('css/starter.css') }}" type="text/css">
 
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">

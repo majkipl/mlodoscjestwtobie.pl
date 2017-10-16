@@ -263,7 +263,7 @@ var starter = {
 
 
             $(document).on('click', '#getMoreItem', function () {
-                starter._var.filter["limit"] = starter._var.filter["limit"] + 10;
+                starter._var.filter["offset"] = starter._var.filter["offset"] + 10;
 
                 starter.main.get_apps();
 
@@ -732,31 +732,55 @@ var starter = {
         },
 
         get_apps: function () {
-            $.ajax(
-                {
-                    url: '/pobierz/',
-                    dataType: "json",
-                    data: {
-                        phrase: starter._var.filter["phrase"],
-                        order: starter._var.filter["order"],
-                        sort: starter._var.filter["sort"],
-                        limit: starter._var.filter["limit"],
-                        offset: starter._var.filter["offset"],
-                    },
-                    type: "POST",
-                    async: false,
-                    beforeSend: function () {
-                        $('#applications .items .item').remove();
-                    },
-                    success: function (json) {
-                        $.each(json.parameters, function (key, value) {
-                            starter.effects.createApp(key, value);
-                        });
-                    },
-                    error: function (x, t, m) {
-                        console.log('ajax error');
-                    }
+            axios({
+                method: 'post',
+                url: '/api/contest/verified',
+                data: {
+                    phrase: starter._var.filter["phrase"],
+                    order: starter._var.filter["order"],
+                    sort: starter._var.filter["sort"],
+                    limit: starter._var.filter["limit"],
+                    offset: starter._var.filter["offset"],
+                },
+            }).then(function (response) {
+                $.each(response.data.rows, function (key, value) {
+                    starter.effects.createApp(key, value);
                 });
+            }).catch(function (error) {
+                if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+            });
+            // $.ajax({
+            //     url: '/pobierz/',
+            //     dataType: "json",
+            //     data: {
+            //         phrase: starter._var.filter["phrase"],
+            //         order: starter._var.filter["order"],
+            //         sort: starter._var.filter["sort"],
+            //         limit: starter._var.filter["limit"],
+            //         offset: starter._var.filter["offset"],
+            //     },
+            //     type: "POST",
+            //     async: false,
+            //     beforeSend: function () {
+            //         $('#applications .items .item').remove();
+            //     },
+            //     success: function (json) {
+            //         $.each(json.parameters, function (key, value) {
+            //             starter.effects.createApp(key, value);
+            //         });
+            //     },
+            //     error: function (x, t, m) {
+            //         console.log('ajax error');
+            //     }
+            // });
 
             console.log(starter._var.filter);
         },
@@ -1138,21 +1162,20 @@ var starter = {
             var item = $('<div>').addClass('col-xs-12 col-sm-6 col-md-4 col-lg-5ths item');
             var application = $('<div>').addClass('application');
 
-            if (value.fotoimg) {
-                var image = $('<div>').addClass('image').attr('style', "background-image : url('" + url_home + "/static/uploads/tip/455x455-" + value.fotoimg + "');");
+            if (value.img_tip) {
+                var image = $('<div>').addClass('image').attr('style', "background-image : url('" + value.img_tip.replace('public','storage') + "');");
                 image.appendTo(application);
             } else if (value.video_url) {
-                if (value.video_type == 1) {
-                    var video = $('<div>').addClass('video youtube').attr('style', "background-image: url('https://img.youtube.com/vi/" + value.video_image_id + "/default.jpg');");
-                } else if (value.video_type == 2) {
-                    var video = $('<div>').addClass('video vimeo').attr('style', "background-image: url('https://i.vimeocdn.com/video/" + value.video_image_id + "_640.jpg');");
-                } else if (value.video_type == 3) {
-                    var video = $('<div>').addClass('video facebook').attr('style', "background-image: url('https://graph.facebook.com/" + value.video_image_id + "/picture');");
+                if (value.video_type == 'youtube') {
+                    var video = $('<div>').addClass('video youtube').attr('style', "background-image: url('" + value.video_image_id + "');");
+                } else if (value.video_type == 'vimeo') {
+                    var video = $('<div>').addClass('video vimeo').attr('style', "background-image: url('" + value.video_image_id + "');");
                 }
+
                 video.appendTo(application);
             }
 
-            var a = $('<a>').attr('title', value.title).attr('href', url_home + '/zgloszenie/id,' + value.id);
+            var a = $('<a>').attr('title', value.title).attr('href', '/zgloszenia/' + value.id);
             var c_table = $('<div>').addClass('c-table');
             var c_row = $('<div>').addClass('c-row');
             var c_cell = $('<div>').addClass('c-cell').text('zobacz');
@@ -1163,9 +1186,6 @@ var starter = {
 
             var span = $('<span>').text(value.firstname + ' ' + value.lastname);
             span.appendTo(application);
-
-            var fb = $('<a>').addClass('fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + url_home + '/zgloszenie/id,' + value.id);
-            fb.appendTo(application);
 
             application.appendTo(item);
             item.appendTo("#applications .items");

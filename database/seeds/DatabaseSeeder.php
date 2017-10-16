@@ -17,8 +17,7 @@ class DatabaseSeeder extends Seeder
             WhenceSeeder::class,
             ProductSeeder::class,
             ApplicationSeeder::class,
-//            PromotionSeeder::class,
-//            UserSeeder::class
+            UserSeeder::class
         ]);
     }
 }

@@ -1,5 +1,5 @@
-var event;
-var height;
+let event;
+let height;
 
 // Pobieramy aktualny protokół (http lub https)
 const protocol = window.location.protocol;
@@ -30,26 +30,7 @@ $(window).scroll(function (e) {
     starter.main.menu_light();
 });
 
-function infoFlashBox() {
-    var infoContent = $('#info-flash-box span.content').html();
-
-    if (infoContent) {
-        $('#info-flash-box').css({display: "block"});
-    }
-
-    $('#info-flash-box').click(function () {
-        $('#info-flash-box').fadeOut("slow");
-    });
-    setTimeout("$('#info-flash-box').fadeOut('slow')", 10000);
-}
-
-function setInfoFlashBox(value) {
-    var infoContent = $('#info-flash-box span.content');
-
-    infoContent.html(value);
-}
-
-var starter = {
+const starter = {
     _var: {
         upload_obj: null,
         filter: [],
@@ -77,7 +58,6 @@ var starter = {
 
             //starter.main.painter();
 
-            //starter.main.timer();
 
             starter._var.filter["phrase"] = '';
             starter._var.filter["order"] = 0;
@@ -89,7 +69,7 @@ var starter = {
 
             starter.listTipsRender.init();
 
-            starter.main.error_scroll();
+            // starter.main.error_scroll();
         },
 
 
@@ -143,75 +123,13 @@ var starter = {
                 return false;
             });
 
-            $(document).on('click', '#contact a.send', function() {
+            $(document).on('click', '#contact a.send', function () {
                 $(this).closest('form').submit();
                 return false;
             });
 
-            // $(document).on('click', '#contact a.send', function () {
-            //     $.ajax({
-            //         url: '/kontakt-wyslij/',
-            //         type: 'POST',
-            //         cache: false,
-            //         dataType: "json",
-            //         data: {
-            //             "name": $('#contact #name').val(),
-            //             "email": $('#contact #email').val(),
-            //             "message": $('#contact #message').val(),
-            //         },
-            //         beforeSend: function (xhr) {
-            //             $return = true;
-            //
-            //             if (!$('#contact #name').val()) {
-            //                 $return = false;
-            //             }
-            //
-            //             $('#contact input, #contact textarea').each(function (key, element) {
-            //
-            //                 $(element).parent().next().text('');
-            //
-            //                 console.log($(element).val());
-            //
-            //                 if ($(element).attr('type') == 'email') {
-            //                     if (!starter.main.validateEmail($(element).val())) {
-            //                         $(element).parent().next().text('Wprowadź poprawny adres email');
-            //
-            //                         console.log($(element).val());
-            //
-            //                         $return = false;
-            //                     }
-            //                 }
-            //
-            //                 if (!$(element).val()) {
-            //                     $(element).parent().next().text('To pole jest wymagane.');
-            //
-            //                     console.log('input');
-            //
-            //                     $return = false;
-            //                 }
-            //
-            //             });
-            //
-            //             return $return;
-            //         },
-            //         success: function (json) {
-            //             $('#contact h3').html(json.message);
-            //
-            //             $('#contact .form').hide();
-            //         },
-            //         error: function (x, t, m) {
-            //             console.log(x);
-            //             console.log(t);
-            //             console.log(m);
-            //         }
-            //
-            //     });
-            //     return false;
-            // });
-
-
             $(document).on('click', 'a.popup-open', function () {
-                var popup = $('section#popup_' + $(this).data('popup'));
+                let popup = $('section#popup_' + $(this).data('popup'));
 
                 if (popup.hasClass('buy')) {
                     popup.find('a.shop[href="#"]').each(function (index, item) {
@@ -235,7 +153,7 @@ var starter = {
             });
 
             $(document).on('click', 'a.popup-close, a.popup-back', function () {
-                var popup = $(this).parents('section');
+                let popup = $(this).parents('section');
 
                 popup.removeClass('popup-show').fadeOut();
 
@@ -245,13 +163,13 @@ var starter = {
             });
 
             $(document).on('click', '.menu-container ul li a', function () {
-                var attri = $(this).data('href');
+                let attri = $(this).data('href');
 
                 if ($(attri).length > 0) {
                     event.preventDefault();
                     history.pushState(null, null, $(this).attr("href"));
 
-                    var offset = Math.abs($(attri).position().top);
+                    let offset = Math.abs($(attri).position().top);
                     $('html, body').animate({scrollTop: offset}, 1000);
 
                     return false;
@@ -393,6 +311,7 @@ var starter = {
                     $('#contact .form').hide();
                 }).catch(function (error) {
                     $(`.error-post`).text('');
+
                     if (error.response) {
                         Object.keys(error.response.data.errors).map((item) => {
                             $(`.error-${item}`).text(error.response.data.errors[item][0]);
@@ -472,7 +391,7 @@ var starter = {
         },
 
         keyup: function () {
-            $(document).on('keyup', '#applications input#find', function (event) {
+            $(document).on('keyup', '#applications input#find', function () {
                 starter._var.filter["phrase"] = $('#applications input#find').val();
 
                 starter.main.get_apps();
@@ -652,9 +571,11 @@ var starter = {
             },
             isImgTip: (file, name) => {
                 const extension = file[0]?.files[0]?.name.split('.').pop().toLowerCase();
-                if ($('#video_url').val() === "" && file[0].files.length === 0) {
+                const videoUrl = $('#video_url');
+
+                if (videoUrl.val() === "" && file[0].files.length === 0) {
                     return `Pole ${name} jest wymagane.`;
-                } else if ($('#video_url').val() !== "" && file[0].files.length !== 0) {
+                } else if (videoUrl.val() !== "" && file[0].files.length !== 0) {
                     return `Twoje zgłoszenie może zawierać tekst ze zdjęciem lub tekst z video.`;
                 } else if (file[0].files[0].size > 4 * 1024 * 1024) {
                     return `Rozmiar pliku nie może przekraczać 4 MB`;
@@ -666,23 +587,15 @@ var starter = {
             },
         },
 
-        error_scroll: function () {
-            if ($('.has-error input').length) {
-                $('.has-error input').get(0).focus();
-            }
-        },
-
         scroll: function () {
 
         },
 
-        datapicker: function () {
-
-        },
-
         selectbox: function () {
-            if ($("#form select").length > 0) {
-                $("#form select").selectbox({
+            const selectElement = $("#form select");
+
+            if (selectElement.length > 0) {
+                selectElement.selectbox({
                     onOpen: function (inst) {
                         $('select#where option').removeAttr('selected');
                         $('#sbHolder_' + inst.uid).addClass('focus');
@@ -691,7 +604,7 @@ var starter = {
                         $('#sbHolder_' + inst.uid).removeClass('focus');
                     },
                     onChange: function (val, inst) {
-                        if (inst.id == 'category') {
+                        if (inst.id === 'category') {
                             if (val > 0) {
                                 $.ajax(
                                     {
@@ -710,12 +623,14 @@ var starter = {
                                                 option.appendTo("select#product");
                                             });
 
-                                            $("select#product").selectbox("detach");
+                                            const selectProduct = $("select#product");
 
-                                            starter.main.selectbox($("select#product"));
+                                            selectProduct.selectbox("detach");
+
+                                            starter.main.selectbox(selectProduct);
                                             $(`.error-category`).text('');
                                         },
-                                        error: function (x, t, m) {
+                                        error: function () {
                                             console.log('ajax error');
                                         }
                                     });
@@ -757,48 +672,12 @@ var starter = {
                     console.log('Error', error.message);
                 }
             });
-            // $.ajax({
-            //     url: '/pobierz/',
-            //     dataType: "json",
-            //     data: {
-            //         phrase: starter._var.filter["phrase"],
-            //         order: starter._var.filter["order"],
-            //         sort: starter._var.filter["sort"],
-            //         limit: starter._var.filter["limit"],
-            //         offset: starter._var.filter["offset"],
-            //     },
-            //     type: "POST",
-            //     async: false,
-            //     beforeSend: function () {
-            //         $('#applications .items .item').remove();
-            //     },
-            //     success: function (json) {
-            //         $.each(json.parameters, function (key, value) {
-            //             starter.effects.createApp(key, value);
-            //         });
-            //     },
-            //     error: function (x, t, m) {
-            //         console.log('ajax error');
-            //     }
-            // });
-
-            console.log(starter._var.filter);
-        },
-
-        scroller: function () {
-
         },
 
         parallax: function () {
 
         },
-        active_menu: function () {
 
-        },
-
-        submitform: function () {
-
-        },
 
         cookies: function () {
 
@@ -812,86 +691,12 @@ var starter = {
 
         },
 
-        featherlight: function () {
-
-        },
-
-        checkform: function () {
-        },
-
-        upload: function (type) {
-
-            switch (type) {
-                case 'receipt':
-                    name = 'Wgraj zdjęcie paragonu';
-                    break;
-                case 'ean':
-                    name = 'Wgraj zdjęcie kodu EAN <strong style="color:#e41e13;">wyciętego</strong> z opakowania produktu';
-                    break;
-                case 'tip':
-                    name = 'Wgraj zdjęcie porady';
-                    break;
-            }
-
-            if ($("#fileuploader" + type).length) {
-                starter._var.upload_obj = $("#fileuploader" + type).uploadFile({
-                    url: url_home + "/upload/typ," + type,
-                    returnType: "json",
-                    multiple: false,
-                    fileName: "photo",
-                    autoSubmit: true,
-                    maxFileSize: 1024 * 1024 * 4,
-                    maxFileCount: 10,
-                    dragDrop: false,
-                    multiDragErrorStr: "To działanie jest niedostepne.",
-                    sizeErrorStr: "jest za ciężki. Maksymalna waga pliku to ",
-                    allowedTypes: "png,gif,jpg,jpeg",
-                    uploadStr: name,
-                    showAbort: false,
-                    onLoad: function (obj) {
-                    },
-                    onSelect: function (files) {
-                        $('#form .uploads-' + type + ' + span.error-post').text('');
-                    },
-                    onSubmit: function (files) {
-                    },
-                    onSuccess: function (files, json, xhr, pd) {
-                        if (json.isSuccess) {
-                            $('#form .uploads-' + type + ' .ajax-file-upload-progress').hide();
-                            $('#form .uploads-' + type + '').css({'background-image': 'url("/static/uploads/' + type + '/750x750-' + json.parameters.file + '")'});
-                            $('#form .uploads-' + type + ' #img_' + type).val(json.parameters.file);
-                            $('#form .uploads-' + type + ' #fileuploader' + type).remove();
-                            $('#form .uploads-' + type + ' + span.error-post').text('');
-                            $('#form .uploads-' + type).parent().next().text('');
-                        } else {
-                            console.log('ERROR');
-                            $('#form .uploads-' + type).parent().addClass('error');
-
-                            console.log();
-
-                            $('#form .uploads-' + type).parent().next().text(json.parameters.post['img_' + type]);
-                        }
-                    },
-                    beforeUploadAll: function () {
-                    },
-                    onError: function (files, status, errMsg, pd) {
-                        //console.log(errMsg);
-                        $('#form .uploads-' + type + ' + span.error-post').text(errMsg);
-                    },
-                    onCancel: function (files, pd) {
-                    },
-                    onAbort: function (files, pd) {
-                    },
-                });
-            }
-        },
-
         owl: function () {
+            const owlCarouselElement = $(".owl-carousel");
 
-            if ($(".owl-carousel").length > 0) {
-                starter._var.owl_products = $(".owl-carousel").owlCarousel({
+            if (owlCarouselElement.length > 0) {
+                starter._var.owl_products = owlCarouselElement.owlCarousel({
                     loop: true,
-                    margin: 10,
                     nav: false,
                     dots: true,
                     margin: 0,
@@ -918,48 +723,34 @@ var starter = {
         },
 
         autoscroll: function () {
-            switch (window.location.pathname) {
-                case '/':
-                    var attri = '#baner';
-                    break;
-                case '/nagrody/':
-                    var attri = '#prizes';
-                    break;
-                case '/wez-udzial/':
-                    var attri = '#take';
-                    break;
-                case '/zgloszenia/':
-                    var attri = '#applications';
-                    break;
-                case '/zgloszenia-tygodnia/':
-                    var attri = '#week';
-                    break;
-                case '/nasze-produkty/':
-                    var attri = '#products';
-                    break;
-                case '/kontakt/':
-                    var attri = '#contact';
-                    break;
-            }
+            const pathToSelector = {
+                '/': '#baner',
+                '/nagrody': '#prizes',
+                '/wez-udzial': '#take',
+                '/zgloszenia': '#applications',
+                '/zgloszenia-tygodnia': '#week',
+                '/nasze-produkty': '#products',
+                '/kontakt': '#contact'
+            };
 
-            if ((attri != undefined) && ($(attri).length > 0)) {
-                var offset = Math.abs($(attri).position().top);
+            let attri = pathToSelector[window.location.pathname];
 
+            if (attri && $(attri).length) {
                 $('html, body').animate({scrollTop: $(attri).position().top}, 1000);
             }
         },
 
-        timer: function () {
-
-        },
-
         menu_light_section: function (section) {
-            var height = $(window).scrollTop() + $(window).height() / 2;
+            const height = $(window).scrollTop() + $(window).height() / 2;
+
+            let pathname;
 
             if ($(section).length > 0) {
                 if (height > $(section).position().top && height < $(section).position().top + $(section).height()) {
-                    if ($('.menu-container ul li a[data-href="' + section + '"]').length > 0) {
-                        var ob = $('.menu-container ul li a[data-href="' + section + '"]');
+                    const menuContainer = $('.menu-container ul li a[data-href="' + section + '"]');
+
+                    if (menuContainer.length > 0) {
+                        const ob = menuContainer;
                         ob.parent().addClass('active');
                         pathname = ob.attr("href");
                     } else {
@@ -982,15 +773,6 @@ var starter = {
             starter.main.menu_light_section('#applications');
             starter.main.menu_light_section('#products');
             starter.main.menu_light_section('#contact');
-        },
-
-        validateEmail: function (sEmail) {
-            var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (filter.test(sEmail)) {
-                return true;
-            } else {
-                return false;
-            }
         },
     },
 
@@ -1070,26 +852,24 @@ var starter = {
 
     videoRender: {
         init: function () {
+            const bgVideo = $('#bgvid');
 
-            if ($('#bgvid').length) {
-                var ww = $(window).width();
-                var wh = $(window).height();
+            if (bgVideo.length) {
+                const ww = $(window).width();
+                const wh = $(window).height();
 
-                var rw = ww / wh;
-                var rv = 1920 / 1080;
+                const rw = ww / wh;
+                const rv = 1920 / 1080;
 
-                console.log(rw + ' / ' + rv);
-
-                //if( ww > wh ) { //landscape
                 if (rw > rv) { //landscape
-                    $('#bgvid').css({
+                    bgVideo.css({
                         'width': ww + 'px',
                         'height': (ww * 1080 / 1920) + 'px',
                         'margin-top': '-' + (ww * 1080 / 1920 / 2) + 'px',
                         'margin-left': '-' + (ww / 2) + 'px',
                     });
                 } else { //portrait
-                    $('#bgvid').css({
+                    bgVideo.css({
                         'height': wh + 'px',
                         'width': (wh * 1920 / 1080) + 'px',
                         'margin-top': '-' + (wh / 2) + 'px',
@@ -1124,67 +904,56 @@ var starter = {
                 // if( today_string == $('#birthday').val() )
                 // 	$('#birthday').val('');
             }
-            ;
         }
     },
 
     rwd: {
         isXs: function () {
-            if ($(window).width() < 768)
-                return true;
-            else
-                return false;
+            return $(window).width() < 768;
         },
 
         isSm: function () {
-            if (($(window).width() < 992) && ($(window).width() >= 768))
-                return true;
-            else
-                return false;
+            return ($(window).width() < 992) && ($(window).width() >= 768);
         },
 
         isMd: function () {
-            if (($(window).width() < 1200) && ($(window).width() >= 992))
-                return true;
-            else
-                return false;
+            return ($(window).width() < 1200) && ($(window).width() >= 992);
         },
         isLg: function () {
-            if ($(window).width() >= 1200)
-                return true;
-            else
-                return false;
+            return $(window).width() >= 1200;
         }
     },
 
     effects: {
         createApp: function (key, value) {
-            var item = $('<div>').addClass('col-xs-12 col-sm-6 col-md-4 col-lg-5ths item');
-            var application = $('<div>').addClass('application');
+            let item = $('<div>').addClass('col-xs-12 col-sm-6 col-md-4 col-lg-5ths item');
+            let application = $('<div>').addClass('application');
 
             if (value.img_tip) {
-                var image = $('<div>').addClass('image').attr('style', "background-image : url('" + value.img_tip.replace('public','storage') + "');");
+                let image = $('<div>').addClass('image').attr('style', "background-image : url('" + value.img_tip.replace('public', 'storage') + "');");
                 image.appendTo(application);
             } else if (value.video_url) {
-                if (value.video_type == 'youtube') {
-                    var video = $('<div>').addClass('video youtube').attr('style', "background-image: url('" + value.video_image_id + "');");
-                } else if (value.video_type == 'vimeo') {
-                    var video = $('<div>').addClass('video vimeo').attr('style', "background-image: url('" + value.video_image_id + "');");
+                let video = $('<div>').addClass('video').attr('style', "background-image: url('" + value.video_image_id + "');");
+
+                if (value.video_type === 'youtube') {
+                    video.addClass('youtube');
+                } else if (value.video_type === 'vimeo') {
+                    video.addClass('vimeo');
                 }
 
                 video.appendTo(application);
             }
 
-            var a = $('<a>').attr('title', value.title).attr('href', '/zgloszenia/' + value.id);
-            var c_table = $('<div>').addClass('c-table');
-            var c_row = $('<div>').addClass('c-row');
-            var c_cell = $('<div>').addClass('c-cell').text('zobacz');
+            const a = $('<a>').attr('title', value.title).attr('href', '/zgloszenia/' + value.id);
+            const c_table = $('<div>').addClass('c-table');
+            const c_row = $('<div>').addClass('c-row');
+            const c_cell = $('<div>').addClass('c-cell').text('zobacz');
             c_cell.appendTo(c_row);
             c_row.appendTo(c_table);
             c_table.appendTo(a);
             a.appendTo(application);
 
-            var span = $('<span>').text(value.firstname + ' ' + value.lastname);
+            const span = $('<span>').text(value.firstname + ' ' + value.lastname);
             span.appendTo(application);
 
             application.appendTo(item);
@@ -1221,8 +990,10 @@ var starter = {
         },
 
         e404: function () {
-            if ($('section#e404').length) {
-                $('section#e404').css({
+            const error404 = $('section#e404');
+
+            if (error404.length) {
+                error404.css({
                     'width': $(window).width() + 'px',
                     'height': $(window).height() + 'px',
                 });
@@ -1231,7 +1002,7 @@ var starter = {
 
         set_center_vertical: function (items) {
             items.each(function () {
-                var itm = $(this);
+                const itm = $(this);
 
                 itm.css({
                     "position": "absolute",
@@ -1280,11 +1051,11 @@ var starter = {
 //plugin to match all heights equal to max height in selection
 (function ($) {
     $.fn.matchMaxHeight = function () {
-        var items = $(this);
+        const items = $(this);
         $(items).attr('style', '');
         $(items).css({});
-        var max = 0;
-        for (var i = 0; i < items.length; i++) {
+        let max = 0;
+        for (let i = 0; i < items.length; i++) {
             max = max < $(items[i]).height() ?
                 $(items[i]).height() : max;
 

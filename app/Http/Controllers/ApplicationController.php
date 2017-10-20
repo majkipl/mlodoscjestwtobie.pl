@@ -71,32 +71,6 @@ class ApplicationController extends Controller
         }
     }
 
-    public function verified(Request $request)
-    {
-        $searchKeyword = $request->input('phrase');
-
-        $applications = Application::select('id', 'firstname', 'lastname', 'title', 'message', 'img_tip', 'video_url', 'video_type',
-            'video_id', 'video_image_id')
-            ->whereNull('token')
-            ->where('contest', true)
-            ->where(function ($query) use ($searchKeyword) {
-                $query->where('title', 'LIKE', '%' . $searchKeyword . '%')
-                    ->orWhere('message', 'LIKE', '%' . $searchKeyword . '%')
-                    ->orWhere('firstname', 'LIKE', '%' . $searchKeyword . '%')
-                    ->orWhere('lastname', 'LIKE', '%' . $searchKeyword . '%');
-            })
-            ->orderBy('id', 'desc') // Sortowanie po ID malejąco
-            ->skip($request->input('offset', 0))
-            ->take($request->input('limit', 10))
-            ->get();
-
-
-        return response()->json([
-            'total' => $applications->count(),
-            'rows' => $applications->toArray()
-        ], Response::HTTP_OK);
-    }
-
     public function show(Application $application)
     {
         return view('application/show', [

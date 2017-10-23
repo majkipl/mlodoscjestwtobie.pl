@@ -11,7 +11,7 @@ class AddShopRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,19 +21,17 @@ class AddShopRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        $rules = [
+        return [
             'name' => 'bail|required|string|max:128',
         ];
-
-        return $rules;
     }
 
     /**
      * @return string[]
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'required' => 'Pole jest wymagane.',

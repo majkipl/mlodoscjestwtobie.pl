@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\IndexApplicationRequest;
 use App\Models\Application;
+use App\Traits\ApiRequestParametersTrait;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,15 +12,12 @@ use Illuminate\Http\Response;
 
 class ApplicationController extends Controller
 {
+    use ApiRequestParametersTrait;
+
     public function index(IndexApplicationRequest $request): JsonResponse
     {
-        $search = $request->input('search');
-        $offset = $request->input('offset', 0);
-        $limit = $request->input('limit', 10);
-        $searchable = $request->input('searchable', []);
-        $filter = $request->input('filter', []);
-        $sort = $request->input('sort', 'id');
-        $order = $request->input('order', 'asc');
+        $params = $this->getRequestParameters($request);
+        extract($params);
 
         $query = Application::with(['shop','category','product','whence'])->search($search, $searchable)->filter($filter)->orderBy($sort, $order);
 
@@ -32,7 +30,11 @@ class ApplicationController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function verified(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function verified(Request $request): JsonResponse
     {
         $searchKeyword = $request->input('phrase');
 

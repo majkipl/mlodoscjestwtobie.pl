@@ -11,7 +11,7 @@ class UpdateShopRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,14 +21,12 @@ class UpdateShopRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        $rules = [
+        return [
             'name' => 'bail|required|string|max:128',
             'id' => 'required|integer|exists:shops,id'
         ];
-
-        return $rules;
     }
 
     /**

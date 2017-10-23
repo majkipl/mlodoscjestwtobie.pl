@@ -6,6 +6,7 @@ use App\Http\Requests\Api\AddShopRequest;
 use App\Http\Requests\Api\IndexShopRequest;
 use App\Http\Requests\Api\UpdateShopRequest;
 use App\Models\Shop;
+use App\Traits\ApiRequestParametersTrait;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -15,19 +16,16 @@ use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
+    use ApiRequestParametersTrait;
+
     /**
      * @param IndexShopRequest $request
      * @return JsonResponse
      */
     public function index(IndexShopRequest $request): JsonResponse
     {
-        $search = $request->input('search');
-        $offset = $request->input('offset', 0);
-        $limit = $request->input('limit', 10);
-        $searchable = $request->input('searchable', []);
-        $filter = $request->input('filter', []);
-        $sort = $request->input('sort', 'id');
-        $order = $request->input('order', 'asc');
+        $params = $this->getRequestParameters($request);
+        extract($params);
 
         $query = Shop::search($search, $searchable)->filter($filter)->orderBy($sort, $order);
 

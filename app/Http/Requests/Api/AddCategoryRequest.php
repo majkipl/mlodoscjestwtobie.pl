@@ -11,7 +11,7 @@ class AddCategoryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class AddCategoryRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules = [
             'name' => 'bail|required|string|max:128',
@@ -37,7 +37,7 @@ class AddCategoryRequest extends FormRequest
     /**
      * @return string[]
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'required' => 'Pole jest wymagane.',

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Models\Application;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ApplicationController extends Controller
@@ -13,7 +12,7 @@ class ApplicationController extends Controller
         return view('panel/application/index');
     }
 
-    public function show(Request $request, int $id)
+    public function show(int $id)
     {
         $application = Application::with(['category','product','whence','shop'])
             ->where('id','=',$id)->first();

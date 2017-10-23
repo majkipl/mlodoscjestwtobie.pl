@@ -7,6 +7,7 @@ use App\Http\Requests\Api\IndexProductRequest;
 use App\Http\Requests\Api\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Traits\ApiRequestParametersTrait;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -16,19 +17,16 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    use ApiRequestParametersTrait;
+
     /**
      * @param IndexProductRequest $request
      * @return JsonResponse
      */
     public function index(IndexProductRequest $request): JsonResponse
     {
-        $search = $request->input('search');
-        $offset = $request->input('offset', 0);
-        $limit = $request->input('limit', 10);
-        $searchable = $request->input('searchable', []);
-        $filter = $request->input('filter', []);
-        $sort = $request->input('sort', 'id');
-        $order = $request->input('order', 'asc');
+        $params = $this->getRequestParameters($request);
+        extract($params);
 
         $query = Product::with(['category'])->search($search, $searchable)->filter($filter)->orderBy($sort, $order);
 

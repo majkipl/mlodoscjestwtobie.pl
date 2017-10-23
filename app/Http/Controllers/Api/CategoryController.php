@@ -7,6 +7,7 @@ use App\Http\Requests\Api\IndexCategoryRequest;
 use App\Http\Requests\Api\UpdateCategoryRequest;
 use App\Models\Category;
 use App\Services\SlugService;
+use App\Traits\ApiRequestParametersTrait;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    use ApiRequestParametersTrait;
+
     protected $slugService;
 
     public function __construct(SlugService $slugService)
@@ -29,13 +32,8 @@ class CategoryController extends Controller
      */
     public function index(IndexCategoryRequest $request): JsonResponse
     {
-        $search = $request->input('search');
-        $offset = $request->input('offset', 0);
-        $limit = $request->input('limit', 10);
-        $searchable = $request->input('searchable', []);
-        $filter = $request->input('filter', []);
-        $sort = $request->input('sort', 'id');
-        $order = $request->input('order', 'asc');
+        $params = $this->getRequestParameters($request);
+        extract($params);
 
         $query = Category::search($search, $searchable)->filter($filter)->orderBy($sort, $order);
 

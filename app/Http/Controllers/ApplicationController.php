@@ -10,7 +10,7 @@ use App\Models\Shop;
 use App\Models\Whence;
 use App\Services\ApplicationService;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class ApplicationController extends Controller
@@ -35,7 +35,7 @@ class ApplicationController extends Controller
         ]);
     }
 
-    public function store(StoreApplicationRequest $request)
+    public function store(StoreApplicationRequest $request): JsonResponse
     {
         try {
             $application = $this->applicationService->store(

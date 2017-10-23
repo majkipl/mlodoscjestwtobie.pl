@@ -11,7 +11,7 @@ class AddProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,14 +21,12 @@ class AddProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
-        $rules = [
+        return [
             'name' => 'bail|required|string|max:255|unique:products,name',
             'category_id' => 'required|integer|exists:categories,id',
         ];
-
-        return $rules;
     }
 
     /**
@@ -36,7 +34,7 @@ class AddProductRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'required' => 'Pole jest wymagane.',

@@ -11,7 +11,7 @@ class ContactRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,15 +21,13 @@ class ContactRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        $rules = [
+        return [
             'name' => 'bail|required|string|min:3|max:128',
             'email' => 'bail|required|string|max:255|email:rfc,dns',
             'message' => 'bail|required|string|max:4096',
         ];
-
-        return $rules;
     }
 
     /**

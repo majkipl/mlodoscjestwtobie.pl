@@ -11,7 +11,7 @@ class StoreApplicationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,7 +21,7 @@ class StoreApplicationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $rules =  [
             'firstname' => 'bail|required|string|min:3|max:128',
@@ -53,12 +53,10 @@ class StoreApplicationRequest extends FormRequest
             $rules['title'] = 'bail|required|string|max:128';
             $rules['message'] = 'bail|required|string|max:500';
             $rules['img_tip'] = 'bail|required_without:video_url|file|mimes:jpeg,jpg,png|max:4096';
-            $rules['title'] = 'bail|required|string|max:128';
             $rules['video_url'] = [
                 'bail',
                 'required_without:img_tip',
                 'nullable',
-                'url',
                 'regex:/^(https?:\/\/)?(www\.)?(youtube\.com|vimeo\.com)\/(watch\?v=|video\/)?([a-zA-Z0-9_-]{11}|[0-9]{5,11})$/',
             ];
         }
@@ -66,7 +64,7 @@ class StoreApplicationRequest extends FormRequest
         return $rules;
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'required' => 'Pole jest wymagane.',

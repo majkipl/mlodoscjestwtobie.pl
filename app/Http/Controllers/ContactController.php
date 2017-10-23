@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Services\ContactService;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 
@@ -18,7 +18,11 @@ class ContactController extends Controller
         $this->contactService = $contactService;
     }
 
-    public function send(ContactRequest $request)
+    /**
+     * @param ContactRequest $request
+     * @return JsonResponse
+     */
+    public function send(ContactRequest $request): JsonResponse
     {
         try {
             $request->validated();

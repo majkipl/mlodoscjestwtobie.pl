@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Mail\ContactMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 

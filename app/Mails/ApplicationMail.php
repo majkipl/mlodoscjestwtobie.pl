@@ -4,9 +4,6 @@ namespace App\Mails;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ApplicationMail extends Mailable
@@ -34,7 +31,7 @@ class ApplicationMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): ApplicationMail
     {
         return $this
             ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))

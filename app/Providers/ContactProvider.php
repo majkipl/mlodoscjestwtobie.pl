@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Services\ContactService;
 use Illuminate\Support\ServiceProvider;
-use function foo\func;
 
 class ContactProvider extends ServiceProvider
 {

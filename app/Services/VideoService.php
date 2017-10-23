@@ -16,7 +16,7 @@ class VideoService
 
         $xml = simplexml_load_string($xmlData);
 
-        $title = $xml->video->title;
+        $xml->video->title;
         $thumbnailUrl = $xml->video->thumbnail_large;
 
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 
 class Shop extends Model
@@ -11,7 +12,10 @@ class Shop extends Model
 
     public $timestamps = false;
 
-    public function applications()
+    /**
+     * @return HasMany
+     */
+    public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
     }

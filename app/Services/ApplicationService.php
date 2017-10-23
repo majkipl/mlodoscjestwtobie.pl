@@ -80,7 +80,8 @@ class ApplicationService
 
     /**
      * @param string $email
-     * @param int $id
+     * @param array $data
+     * @param bool $contest
      * @return void
      */
     public function sendMail(string $email, array $data, bool $contest): void

@@ -12,7 +12,10 @@ class Whence extends Model
 
     public $timestamps = false;
 
-    public function applications()
+    /**
+     * @return HasMany
+     */
+    public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
     }

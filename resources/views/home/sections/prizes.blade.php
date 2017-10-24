@@ -10,7 +10,7 @@
                             <p>Warsztaty make-up <br />z Red Lipstick Monster!</p>
                         </div>
                         <div class="col-xs-12 col-lg-4">
-                            <a href="#" class="cta-button popup-open" data-popup="1" onClick="ga('send', 'event', 'button', 'klikniecie', 'nagroda RLM');">WIĘCEJ</a>
+                            <a href="#" class="cta-button popup-open" data-popup="1">WIĘCEJ</a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                         <p>Bestsellerowa czerwona szminka</p>
                         <img src="{{ asset('images/prizes/gosh.png') }}" alt="gosh" />
                     </div>
-                    <a href="#" class="cta-button popup-open" data-popup="2" onClick="ga('send', 'event', 'button', 'klikniecie', 'nagroda szminka');">WIĘCEJ</a>
+                    <a href="#" class="cta-button popup-open" data-popup="2">WIĘCEJ</a>
                 </div>
                 <div class="col-xs-12 nty text-center">
                     <img src="{{ asset('images/prizes/00-compressor.png') }}" alt="produkty" class="hidden-xs hidden-sm" />
@@ -57,7 +57,7 @@
                             <div class="c-table">
                                 <div class="c-row">
                                     <div class="c-cell">
-                                        <a href="#" class="cta-button popup-open" data-popup="3" onClick="ga('send', 'event', 'button', 'klikniecie', 'nagrody tygodnia');">WIĘCEJ</a>
+                                        <a href="#" class="cta-button popup-open" data-popup="3">WIĘCEJ</a>
                                     </div>
                                 </div>
                             </div>

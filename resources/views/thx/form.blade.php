@@ -20,7 +20,7 @@
                             <p>Na Twojego maila wysłaliśmy właśnie prośbę o weryfikację adresu i potwierdzenie
                                 zgłoszenia. Sprawdź swoją skrzynkę i wróć do nas poprzez podany w wiadomości link.</p>
 
-                            <a href="/" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
+                            <a href="{{ route('front.home') }}" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
                         </div>
                     </div>
                 </div>

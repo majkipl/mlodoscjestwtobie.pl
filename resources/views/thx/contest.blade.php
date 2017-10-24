@@ -28,7 +28,7 @@
                                 i grać o nagrody tygodnia! Co środę na naszej stronie znajdziesz wyróżnione zgłoszenia!
                             </p>
 
-                            <a href="/" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
+                            <a href="{{ route('front.home') }}" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
                         </div>
                     </div>
                 </div>

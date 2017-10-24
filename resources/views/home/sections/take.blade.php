@@ -48,7 +48,7 @@
             </div>
 
             <div class="col-xs-12 text-center aca-3">
-                <a href="/formularz/" class="cta-button x2" onclick="ga('send', 'event', 'button', 'klikniecie', 'wez udzial');">weź udział</a>
+                <a href="{{ route('front.form') }}" class="cta-button x2">weź udział</a>
             </div>
 
             <div class="col-xs-12 col-sm-6 regulations">

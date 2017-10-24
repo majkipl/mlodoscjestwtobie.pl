@@ -2,7 +2,7 @@
     <div class="container">
         <nav id="site-navigation" class="main-navigation">
             <div class="xs-container sm-container">
-                <a href="/" class="navbar-brand">
+                <a href="{{ route('front.home') }}" class="navbar-brand">
                     <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </a>
 
@@ -14,12 +14,12 @@
             </div>
             <div class="menu-container">
                 <ul class="nav navbar-nav menu nav-menu pull-right">
-                    <li><a href="/nagrody" role="presentation" data-href="#prizes">nagrody</a></li>
-                    <li><a href="/wez-udzial" role="presentation" data-href="#take">weź udział</a></li>
-                    <li><a href="/zgloszenia-tygodnia" role="presentation" data-href="#week">zgloszenia tygodnia</a></li>
-                    <li><a href="/zgloszenia" role="presentation" data-href="#applications">zgłoszenia</a></li>
-                    <li><a href="/nasze-produkty" role="presentation" data-href="#products">produkty</a></li>
-                    <li><a href="/kontakt" role="presentation" data-href="#contact">kontakt</a></li>
+                    <li><a href="{{ route('front.home.award') }}" role="presentation" data-href="#prizes">nagrody</a></li>
+                    <li><a href="{{ route('front.home.take') }}" role="presentation" data-href="#take">weź udział</a></li>
+                    <li><a href="{{ route('front.home.week') }}" role="presentation" data-href="#week">zgloszenia tygodnia</a></li>
+                    <li><a href="{{ route('front.home.application') }}" role="presentation" data-href="#applications">zgłoszenia</a></li>
+                    <li><a href="{{ route('front.home.product') }}" role="presentation" data-href="#products">produkty</a></li>
+                    <li><a href="{{ route('front.home.contact') }}" role="presentation" data-href="#contact">kontakt</a></li>
                 </ul>
             </div>
         </nav>

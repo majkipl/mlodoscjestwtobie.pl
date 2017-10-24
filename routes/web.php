@@ -24,19 +24,15 @@ use App\Http\Controllers\ThxController;
 
 Auth::routes();
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 // FRONTEND
 
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
-Route::get('/nagrody', [HomeController::class, 'index'])->name('front.home');
-Route::get('/wez-udzial', [HomeController::class, 'index'])->name('front.home');
-Route::get('/zgloszenia', [HomeController::class, 'index'])->name('front.home');
-Route::get('/zgloszenia-tygodnia', [HomeController::class, 'index'])->name('front.home');
-Route::get('/nasze-produkty', [HomeController::class, 'index'])->name('front.home');
-Route::get('/kontakt', [HomeController::class, 'index'])->name('front.home');
+Route::get('/nagrody', [HomeController::class, 'index'])->name('front.home.award');
+Route::get('/wez-udzial', [HomeController::class, 'index'])->name('front.home.take');
+Route::get('/zgloszenia', [HomeController::class, 'index'])->name('front.home.application');
+Route::get('/zgloszenia-tygodnia', [HomeController::class, 'index'])->name('front.home.week');
+Route::get('/nasze-produkty', [HomeController::class, 'index'])->name('front.home.product');
+Route::get('/kontakt', [HomeController::class, 'index'])->name('front.home.contact');
 Route::get('/polityka-prywatnosci', [PolicyController::class, 'index'])->name('front.policy');
 
 Route::get('/formularz', [ApplicationController::class, 'form'])->name('front.form');

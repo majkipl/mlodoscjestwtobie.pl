@@ -20,7 +20,7 @@
                             <p>Czerwona szminka GOSH zostanie wysłana na podany przez Ciebie adres w przeciągu 30 dni
                                 roboczych od daty zweryfikowania poprawności Twojego zgłoszenia.</p>
 
-                            <a href="/" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
+                            <a href="{{ route('front.home') }}" class="cta-button"><span>WRÓĆ DO STRONY GŁÓWNEJ</span></a>
                         </div>
                     </div>
                 </div>

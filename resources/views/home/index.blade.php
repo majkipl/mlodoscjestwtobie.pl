@@ -7,18 +7,18 @@
     @include('home.sections.baner-take')
 
     @if($isEndContest)
-{{--        @if($isEndPromotion)--}}
-{{--            @if($isEndResult)--}}
-{{--                section-take-end-result--}}
-{{--                section-winner-end-result--}}
-{{--            @else--}}
-{{--                section-take-end-promotion--}}
-{{--                section-winner-end-promotion--}}
-{{--            @endif--}}
-{{--        @else--}}
-{{--            section-take-end-contest--}}
-{{--            section-winner-end-contest--}}
-{{--        @endif--}}
+        @if($isEndPromotion)
+            @if($isEndResult)
+                @include('home.sections.take-end-result')
+                @include('home.sections.winner-end-result')
+            @else
+                @include('home.sections.take-end-promotion')
+                @include('home.sections.winner-end-promotion')
+            @endif
+        @else
+            @include('home.sections.take-end-contest')
+            @include('home.sections.winner-end-contest')
+        @endif
     @else
         @include('home.sections.take')
     @endif

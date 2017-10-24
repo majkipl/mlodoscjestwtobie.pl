@@ -46,7 +46,7 @@
 
                     <p>{{ $contest->message }}</p>
 
-                    <a href="/zgloszenia/" class="cta-button">POWRÓT</a>
+                    <a href="{{ route('front.home.application') }}" class="cta-button">POWRÓT</a>
                 </div>
             </div>
 

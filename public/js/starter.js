@@ -47,17 +47,8 @@ const starter = {
             starter.main.onSubmit();
 
             starter.main.keyup();
-
             starter.main.owl();
-
             starter.main.selectbox();
-
-            // starter.main.upload('receipt');
-            // starter.main.upload('ean');
-            // starter.main.upload('tip');
-
-            //starter.main.painter();
-
 
             starter._var.filter["phrase"] = '';
             starter._var.filter["order"] = 0;
@@ -66,21 +57,11 @@ const starter = {
             starter._var.filter["offset"] = 0;
 
             starter.datepicker.init();
-
             starter.listTipsRender.init();
-
-            // starter.main.error_scroll();
         },
 
 
         onClick: function () {
-            /*
-            $('selector').click(function(){
-
-            });
-            */
-
-
             $(document).on('click', '#i_want_more', function () {
                 $(this).addClass('hidden');
                 $('#form .hideOn').fadeIn(500);
@@ -196,8 +177,6 @@ const starter = {
                 const name = $(this).attr('name');
                 const iWant = $('#i_want').val() ? 1 : 0;
 
-                // console.log(name);
-
                 if (item.hasClass('upload-file')) {
                     const fileUpload = item[0].files[0];
                     const fieldId = item.attr('id');
@@ -215,19 +194,7 @@ const starter = {
                                     $(`#${fieldId}_thumb`).attr('src', event.target.result).parent().removeClass('hidden').next().addClass('hidden');
                                 }
                                 reader.readAsDataURL(fileUpload);
-                            } else {
-                                console.log('extension error');
-                                // // Wyświetlenie komunikatu o błędzie
-                                // errorDiv.text('Można wybrać tylko pliki graficzne JPG, JPEG lub PNG');
-                                // // Wyczyszczenie pola wyboru pliku
-                                // item.val('');
                             }
-                        } else {
-                            console.log('size error');
-                            // Wyświetlenie komunikatu o błędzie
-                            // errorDiv.text('Rozmiar pliku nie może przekraczać 4 MB');
-                            // Wyczyszczenie pola wyboru pliku
-                            // item.val('');
                         }
                     }
                 }
@@ -280,6 +247,8 @@ const starter = {
                             return starter.main.validator.isFile(item, 'Zdjęcie kodu ean');
                         case 'img_receipt':
                             return starter.main.validator.isFile(item, 'Zdjęcie paragonu');
+                        default:
+                            return true;
                     }
                 }
 
@@ -290,7 +259,6 @@ const starter = {
                     $(`.error-${name}`).text('');
                     delete starter._var.error[name];
                 }
-
             });
         },
 
@@ -317,12 +285,8 @@ const starter = {
                             $(`.error-${item}`).text(error.response.data.errors[item][0]);
                         });
                     } else if (error.request) {
-                        // The request was made but no response was received
-                        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                        // http.ClientRequest in node.js
                         console.log(error.request);
                     } else {
-                        // Something happened in setting up the request that triggered an Error
                         console.log('Error', error.message);
                     }
                 });
@@ -331,24 +295,16 @@ const starter = {
             });
 
             $(document).on('submit', '#form form', function () {
-                // $('.input, .textarea, .checkbox, .file').trigger('change');
-
-                // console.log(starter._var.error);
+                $('.input, .textarea, .checkbox, .file').trigger('change');
 
                 if (Object.keys(starter._var.error).length === 0) {
                     const fields = starter.getFields($(this).closest('form'));
                     const url = $(this).closest('form').attr('action');
-
-                    console.log(fields);
-                    console.log(url);
-
                     const formData = new FormData();
 
                     for (const field in fields) {
                         formData.append(field, fields[field]);
                     }
-
-                    console.log(formData.get('firstname'));
 
                     axios({
                         method: 'post',
@@ -367,12 +323,8 @@ const starter = {
                                 $(`.error-${item}`).text(error.response.data.errors[item][0]);
                             });
                         } else if (error.request) {
-                            // The request was made but no response was received
-                            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                            // http.ClientRequest in node.js
                             console.log(error.request);
                         } else {
-                            // Something happened in setting up the request that triggered an Error
                             console.log('Error', error.message);
                         }
                     });
@@ -606,37 +558,30 @@ const starter = {
                     onChange: function (val, inst) {
                         if (inst.id === 'category') {
                             if (val > 0) {
-                                $.ajax(
-                                    {
-                                        url: '/api/product/category/' + val,
-                                        dataType: "json",
-                                        type: "GET",
-                                        async: false,
-                                        success: function (json) {
-                                            $('select#product option').remove();
+                                axios.get('/api/product/category/' + val)
+                                    .then(function (response) {
+                                        $('select#product option').remove();
 
-                                            let option = $('<option>').attr('label', 'Produkt').text('Produkt');
+                                        let option = $('<option>').attr('label', 'Produkt').text('Produkt');
+                                        option.appendTo("select#product");
+
+                                        response.data.rows.forEach(function (value) {
+                                            let option = $('<option>').attr('label', value.name).attr('value', value.id).text(value.name);
                                             option.appendTo("select#product");
+                                        });
 
-                                            $.each(json.rows, function (key, value) {
-                                                let option = $('<option>').attr('label', value.name).attr('value', value.id).text(value.name);
-                                                option.appendTo("select#product");
-                                            });
+                                        const selectProduct = $("select#product");
 
-                                            const selectProduct = $("select#product");
+                                        selectProduct.selectbox("detach");
 
-                                            selectProduct.selectbox("detach");
-
-                                            starter.main.selectbox(selectProduct);
-                                            $(`.error-category`).text('');
-                                        },
-                                        error: function () {
-                                            console.log('ajax error');
-                                        }
+                                        starter.main.selectbox(selectProduct);
+                                        $(`.error-category`).text('');
+                                    })
+                                    .catch(function (error) {
+                                        console.log('axios error:', error);
                                     });
                             } else {
                                 $(`.error-category`).text('Wybierz kategorię.');
-
                             }
 
                         }
@@ -663,32 +608,11 @@ const starter = {
                 });
             }).catch(function (error) {
                 if (error.request) {
-                    // The request was made but no response was received
-                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                    // http.ClientRequest in node.js
                     console.log(error.request);
                 } else {
-                    // Something happened in setting up the request that triggered an Error
                     console.log('Error', error.message);
                 }
             });
-        },
-
-        parallax: function () {
-
-        },
-
-
-        cookies: function () {
-
-        },
-
-        sort: function (vArray, filter) {
-
-        },
-
-        search: function () {
-
         },
 
         owl: function () {
@@ -781,7 +705,6 @@ const starter = {
         const textareas = $form.find('.textarea');
         const checkboxes = $form.find('.checkbox');
         const files = $form.find('.file');
-
         const fields = {};
 
         $.each(inputs, function (index, item) {
@@ -890,19 +813,6 @@ const starter = {
                     maxDate: moment().subtract(18, 'years')
                 });
                 $('input#firstname').focus();
-
-                // var today = new Date();
-                // var dd = today.getDate();
-                // var mm = today.getMonth()+1; //January is 0!
-                // var yyyy = today.getFullYear();
-                //
-                // if( dd > 9)
-                // 	today_string = dd + '-' + mm + '-' + yyyy;
-                // else
-                // 	today_string = '0' + dd + '-' + mm + '-' + yyyy;
-                //
-                // if( today_string == $('#birthday').val() )
-                // 	$('#birthday').val('');
             }
         }
     },
@@ -1063,4 +973,3 @@ const starter = {
         $(items).css({'display': 'block', 'height': '' + max + 'px'});
     }
 })(jQuery);
-

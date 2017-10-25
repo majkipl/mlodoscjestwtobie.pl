@@ -5,7 +5,6 @@
 body {
     background-color: #e6e6e6;
     color: #fff;
-    *font-family: "museo-sans",sans-serif;
 }
 
 h2 {
@@ -147,7 +146,6 @@ section .container {
 }
 
 .navbar-brand {
-    padding-left: 0;
     padding: 17px 15px;
     height: 60px;
 }
@@ -212,7 +210,7 @@ textarea {
 
 input:focus,
 textarea:focus {
-    box-shadow: 0px 0px 32px #e41e13;
+    box-shadow: 0 0 32px #e41e13;
 }
 
 input[placeholder]::-webkit-input-placeholder {
@@ -250,14 +248,14 @@ textarea::-webkit-input-placeholder {
     opacity: 1;
 }
 
-textarea:-moz-placeholder { /* Firefox 18- */
+textarea:-moz-placeholder {
     color: #ffffff;
     font-weight: 400;
     text-align: left;
     opacity: 1;
 }
 
-textarea::-moz-placeholder {  /* Firefox 19+ */
+textarea::-moz-placeholder {
     color: #ffffff;
     font-weight: 400;
     text-align: left;
@@ -291,7 +289,7 @@ textarea:-ms-input-placeholder {
     width: 100%;
     z-index: 9;
     background-color: #e6e6e6;
-    box-shadow: 0px 25px 95px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 25px 95px 0 rgba(0, 0, 0, 0.14);
 }
 
 #top .container {
@@ -320,7 +318,7 @@ section.top .navbar-nav > li {
 section.top .navbar-nav > li:before {
     content: '';
     position: absolute;
-    left: 0px;
+    left: 0;
     top: -150px;
     background-image: url(../images/cta-menu-compressor.jpg);
     background-repeat: no-repeat;
@@ -340,8 +338,6 @@ section.top .navbar-nav > li > a {
     font-size: 16px;
     background: none;
     transition: all 0.5s ease;
-    padding-left: 15px;
-    padding-right: 15px;
     color: #333333;
     height: 60px;
     line-height: 60px;
@@ -417,16 +413,6 @@ section.top .navbar-nav > li.active > a {
 }
 
 #baner .visual .col-visual {
-    /*
-    background: rgba(0,0,0,0.75);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 10%, rgba(255,255,255,0) 60%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(10%, rgba(0,0,0,0.75)), color-stop(60%, rgba(255,255,255,0)));
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 10%, rgba(255,255,255,0) 60%);
-    background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 10%, rgba(255,255,255,0) 60%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.75) 10%, rgba(255,255,255,0) 60%);
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.75) 10%, rgba(255,255,255,0) 60%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff', GradientType=1 );
-    */
     background-image: url(../images/shadow-1.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -453,7 +439,7 @@ section.top .navbar-nav > li.active > a {
     display: block;
     text-align: center;
     font-family: Times New Roman;
-    letter-spacing: 6.5px;
+    letter-spacing: 7px;
     margin-bottom: 50px;
     line-height: 1.2;
     margin-top: -5px;
@@ -480,7 +466,6 @@ section.top .navbar-nav > li.active > a {
     text-align: center;
     width: 100%;
     position: relative;
-    display: block;
     margin-bottom: 15px;
     line-height: 1.2;
     display: none;
@@ -502,7 +487,7 @@ section.top .navbar-nav > li.active > a {
     background-image: url('../images/prizes/monster-1.jpg');
     background-repeat:no-repeat;
     background-position: top center;
-    box-shadow: -17.678px -17.678px 95px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: -17.678px -17.678px 95px 0 rgba(0, 0, 0, 0.14);
 }
 
 #prizes .ngl h2 {
@@ -512,9 +497,8 @@ section.top .navbar-nav > li.active > a {
     text-transform: uppercase;
     text-align: left;
     padding: inherit;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 30px;
+    letter-spacing: 3px;
+    margin: 30px 0 0;
 }
 
 #prizes .ngl .postscript {
@@ -554,7 +538,7 @@ section.top .navbar-nav > li.active > a {
     background-repeat:no-repeat;
     background-position: top center;
     margin-top: 90px;
-    box-shadow: -17.678px -17.678px 95px 0px rgba(0, 0, 0, 0.14);
+    box-shadow: -17.678px -17.678px 95px 0 rgba(0, 0, 0, 0.14);
 }
 
 #prizes .ngw h2 {
@@ -564,9 +548,8 @@ section.top .navbar-nav > li.active > a {
     text-transform: uppercase;
     text-align: left;
     padding: inherit;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 30px;
+    letter-spacing: 3px;
+    margin: 30px 0 0;
 }
 
 #prizes .ngw .postscript {
@@ -591,8 +574,6 @@ section.top .navbar-nav > li.active > a {
 }
 
 #prizes .ngw .cta-button {
-    *margin: 4px 0;
-    *display: inline-block;
     position: absolute;
     left: 30px;
     bottom: 37px;
@@ -609,7 +590,7 @@ section.top .navbar-nav > li.active > a {
     text-transform: uppercase;
     text-align: right;
     padding: inherit;
-    letter-spacing: 2.8px;
+    letter-spacing: 3px;
     margin: 0;
 }
 
@@ -723,10 +704,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: -15px;
-    margin-bottom: 15px;
+    letter-spacing: 3px;
+    margin: -15px 0 15px;
 }
 
 #take p {
@@ -817,9 +796,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
+    letter-spacing: 3px;
+    margin: 15px 0 0;
 }
 
 #winner p {
@@ -845,11 +823,11 @@ section.top .navbar-nav > li.active > a {
 
 #winner .application img {
     width: 100%;
-    opacity: 0;
 }
 
 #winner .application span {
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
     color: #000;
@@ -881,10 +859,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 100px;
+    letter-spacing: 3px;
+    margin: 15px 0 100px;
 }
 
 #week .no-application {
@@ -933,8 +909,8 @@ section.top .navbar-nav > li.active > a {
 
 #week .application a {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     text-align: center;
     width: 100%;
     height: calc(100% - 40px);
@@ -961,8 +937,8 @@ section.top .navbar-nav > li.active > a {
 
 #week .application span {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
     width: 100%;
     padding: 10px 15px;
     background-color: #ffffff;
@@ -995,10 +971,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    letter-spacing: 3px;
+    margin: 15px 0 30px;
 }
 
 #applications p {
@@ -1045,8 +1019,8 @@ section.top .navbar-nav > li.active > a {
 
 #applications .application a:not(.fb) {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     text-align: center;
     width: 100%;
     height: calc(100% - 40px);
@@ -1069,8 +1043,8 @@ section.top .navbar-nav > li.active > a {
 
 #applications .application span {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
     width: 100%;
     padding: 12px 15px;
     background-color: #ffffff;
@@ -1084,7 +1058,7 @@ section.top .navbar-nav > li.active > a {
     width: 40px;
     height: 40px;
     top: -20px;
-    right: 0px;
+    right: 0;
     position: absolute;
     left: auto;
     background-image: url(../images/applications/fb.png);
@@ -1112,10 +1086,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 40px;
+    letter-spacing: 3px;
+    margin: 15px 0 40px;
 }
 
 #products .keratin {
@@ -1150,9 +1122,8 @@ section.top .navbar-nav > li.active > a {
     font-weight: 800;
     font-size:15px;
     text-transform:uppercase;
-    margin:0;
     line-height: 1.2;
-    margin-bottom: 30px;
+    margin: 0 0 30px;
 }
 
 #products .item ul {
@@ -1326,10 +1297,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: -15px;
-    margin-bottom: 15px;
+    letter-spacing: 3px;
+    margin: -15px 0 15px;
 }
 
 #contact h3 {
@@ -1338,8 +1307,7 @@ section.top .navbar-nav > li.active > a {
     font-size: 26px;
     text-transform: uppercase;
     text-align: center;
-    margin: 0;
-    margin-top: 30px;
+    margin: 30px 0 0;
 }
 
 #contact p {
@@ -1369,10 +1337,8 @@ section.top .navbar-nav > li.active > a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 60px;
-    margin-bottom: 30px;
+    letter-spacing: 3px;
+    margin: 60px 0 30px;
 }
 
 #partner .pm .shop {
@@ -1509,10 +1475,8 @@ footer p a {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: -15px;
-    margin-bottom: 15px;
+    letter-spacing: 3px;
+    margin: -15px 0 15px;
 }
 
 #form p {
@@ -1552,7 +1516,7 @@ footer p a {
 }
 
 #form .sbHolder.focus {
-    box-shadow: 0px 0px 32px #e41e13;
+    box-shadow: 0 0 32px #e41e13;
 }
 
 #form .sbToggle {
@@ -1563,10 +1527,6 @@ footer p a {
 }
 
 #form .sbHolder.focus .sbToggle {
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
     transform: rotate(-180deg);
 }
 
@@ -1588,7 +1548,6 @@ footer p a {
 }
 
 #form .sbOptions {
-    background-color: #002134;
     background-color: #1f0210;
     width: calc(100% + 2px);
     border: 1px solid #490524;
@@ -1623,7 +1582,6 @@ footer p a {
     color: #ffffff;
     padding-left: 80px;
     min-height: 33px;
-    *background-image: url('../images/form/ch0.png');
     margin-top: 40px;
     line-height: 1.2;
     font-size: 15px;
@@ -1641,24 +1599,18 @@ footer p a {
 }
 
 #form label.css-label:hover:before {
-    box-shadow: 0px 0px 32px #e41e13;
+    box-shadow: 0 0 32px #e41e13;
 }
 
 #form label.css-label:after {
     content: '';
-    height: 40px;
     width: 40px;
+    height: 40px;
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url(../images/form/checkbox.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    opacity:0;
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
+    background: url(../images/form/checkbox.png) center center no-repeat;
+    opacity: 0;
     transform: rotate(-180deg);
     transition: all 0.5s ease;
 }
@@ -1690,10 +1642,6 @@ footer p a {
 
 #form input[type=checkbox].css-checkbox:checked + label.css-label:after {
     opacity: 1;
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
     transform: rotate(0deg);
 }
 
@@ -1704,7 +1652,7 @@ footer p a {
 }
 
 #form .uploads:hover {
-    box-shadow: 0px 0px 32px #e41e13;
+    box-shadow: 0 0 32px #e41e13;
 }
 
 #form .uploads .ajax-file-upload-container {
@@ -1718,9 +1666,9 @@ footer p a {
 
 #form .ajax-file-upload-statusbar {
     border: 0;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
     padding: 0;
     margin: 0;
     width: 100%!important;
@@ -1768,9 +1716,9 @@ footer p a {
     line-height: 1.2;
     display: inline-block;
     border: none;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
     padding: 0;
     text-align: left;
 }
@@ -1814,12 +1762,12 @@ footer p a {
     line-height: 1.2;
 }
 
-#form textarea:-moz-placeholder { /* Firefox 18- */
+#form textarea:-moz-placeholder {
     height: 142px;
     line-height: 1.2;
 }
 
-#form textarea::-moz-placeholder {  /* Firefox 19+ */
+#form textarea::-moz-placeholder {
     height: 142px;
     line-height: 1.2;
 }
@@ -1990,9 +1938,8 @@ body .bootstrap-datetimepicker-widget .datepicker-decades table.table-condensed 
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
+    letter-spacing: 3px;
+    margin: 15px 0 0;
 }
 
 #thx p {
@@ -2033,10 +1980,8 @@ body .bootstrap-datetimepicker-widget .datepicker-decades table.table-condensed 
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    letter-spacing: 3px;
+    margin: 15px 0 30px;
 }
 
 #application h1 {
@@ -2078,7 +2023,7 @@ body .bootstrap-datetimepicker-widget .datepicker-decades table.table-condensed 
     width: 40px;
     height: 40px;
     top: -20px;
-    right: 0px;
+    right: 0;
     position: absolute;
     left: auto;
     background-image: url(../images/applications/fb.png);
@@ -2132,7 +2077,6 @@ section.popup .container {
 
 section.popup .popup-bg {
     height: 100%;
-    *padding-top: 100px;
 }
 
 section.popup .popup-container-row-col {
@@ -2145,10 +2089,8 @@ section.popup h2 {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    letter-spacing: 3px;
+    margin: 15px 0;
 }
 
 section.popup h3 {
@@ -2179,7 +2121,6 @@ section.popup p span {
 
 section.popup img {
     max-width: 100%;
-    *box-shadow: -17.678px -17.678px 95px 0px rgba(0, 0, 0, 0.14)
 }
 
 section.popup span.rabbits {
@@ -2377,10 +2318,8 @@ section#e404 {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 90px;
+    letter-spacing: 3px;
+    margin: 15px 0 90px;
 }
 
 #private p {
@@ -2408,10 +2347,8 @@ section#e404 {
     font-size: 14px;
     text-transform: uppercase;
     text-align: left;
-    letter-spacing: 2.8px;
-    margin: 0;
-    margin-top: 15px;
-    margin-bottom: 90px;
+    letter-spacing: 3px;
+    margin: 15px 0 90px;
 }
 
 #cookies p {
@@ -2451,7 +2388,7 @@ section#e404 {
 }
 
 .buy .shop[data-shop="1"] {
-    background-position: center 0px;
+    background-position: center 0;
 }
 
 .buy .shop[data-shop="2"] {
@@ -2568,7 +2505,6 @@ section#e404 {
  */
 
 .error-404 {
-    background-image: url('../images/error/404-compressor.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -2589,7 +2525,6 @@ section#e404 {
 }
 
 .spinner {
-    margin: 100px auto;
     width: 290px;
     height: 160px;
     text-align: center;
@@ -2597,8 +2532,7 @@ section#e404 {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -80px;
-    margin-left: -145px;
+    margin: -80px auto 100px -145px;
 }
 
 .spinner > div {
@@ -2632,20 +2566,14 @@ section#e404 {
 }
 
 @-webkit-keyframes sk-stretchdelay {
-    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
-    20% { -webkit-transform: scaleY(1.0) }
+    0%, 40%, 100% { transform: scaleY(0.4) }
+    20% { transform: scaleY(1.0) }
 }
 
 @keyframes sk-stretchdelay {
-    0%, 40%, 100% {
-        transform: scaleY(0.4);
-        -webkit-transform: scaleY(0.4);
-    }  20% {
-           transform: scaleY(1.0);
-           -webkit-transform: scaleY(1.0);
-       }
+    0%, 40%, 100% { transform: scaleY(0.4) }
+    20% { transform: scaleY(1.0) }
 }
-
 
 /*
  * m0320.css
@@ -2653,7 +2581,6 @@ section#e404 {
 
 @media (max-width: 767px){
     #site-navigation .menu-container {
-        *display: none;
         position: absolute;
         width: 100%;
         background-color: #e6e6e6;
@@ -2664,7 +2591,6 @@ section#e404 {
     }
 
     #site-navigation.toggled .menu-container {
-        *display: block;
         position: absolute;
         width: 100%;
         background-color: #e6e6e6;
@@ -2730,7 +2656,7 @@ section#e404 {
     }
 
     #baner .visual .v4 {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     #baner .visual .col-visual {
@@ -2742,7 +2668,7 @@ section#e404 {
     }
 
     #prizes .ngw {
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     #prizes .nty {
@@ -2817,7 +2743,6 @@ section#e404 {
 
 @media (min-width: 768px) {
     #site-navigation .menu-container {
-        *display: none;
         position: absolute;
         width: 100%;
         background-color: #e6e6e6;
@@ -2828,7 +2753,6 @@ section#e404 {
     }
 
     #site-navigation.toggled .menu-container {
-        *display: block;
         position: absolute;
         width: 100%;
         background-color: #e6e6e6;

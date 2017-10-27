@@ -43,10 +43,6 @@ class ApplicationController extends Controller
                 $request
             );
 
-            $contest = $application->contest ? true : false;
-
-            $this->applicationService->sendMail($request->input('email'), ['id' => $application->id, 'token' => $application->token], $contest);
-
             return response()->json(
                 [
                     'status' => 'success',

@@ -495,8 +495,14 @@ const starter = {
             isVideoUrl: (value, name) => {
                 const urlPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|vimeo\.com)\/(watch\?v=|video\/)?([a-zA-Z0-9_-]{11}|[0-9]{5,11})$/;
 
-                if ($('#img_tip').files[0]) {
-                    return `Twoje zgłoszenie może zawierać tekst ze zdjęciem lub tekst z video.`;
+                const file = $('input#img_tip');
+
+                if (file[0].files[0]) {
+                    if( value === "" ) {
+                        return true;
+                    } else {
+                        return `Twoje zgłoszenie może zawierać tekst ze zdjęciem lub tekst z video.`;
+                    }
                 } else {
                     if (value === "") {
                         return `Pole ${name} jest wymagane.`;

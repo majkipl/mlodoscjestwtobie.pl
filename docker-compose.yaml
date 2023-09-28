@@ -15,7 +15,7 @@ volumes:
 services:
     httpd:
         container_name: ${DOCKER_DOMAIN}-httpd
-        image: ${DOCKER_DOMAIN}-php:7.1-apache
+        image: ${DOCKER_DOMAIN}-php:7.2.5-apache
         build:
             context: .
             dockerfile: Dockerfile_Httpd
@@ -44,6 +44,22 @@ services:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
+
+    phpmyadmin:
+        container_name: ${DOCKER_DOMAIN}-phpmyadmin
+        image: phpmyadmin:5.2
+        ports:
+            - ${DOCKER_PHPMYADMIN_PORT}:80
+        networks:
+            - dev
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=${DOCKER_DOMAIN}-${DB_CONNECTION}
+            - PAM_PORT=${DOCKER_MYSQL_PORT}
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+        depends_on:
+            - db_mysql
 
     mailcatcher:
         container_name: ${DOCKER_DOMAIN}-mailcatcher

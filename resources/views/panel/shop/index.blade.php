@@ -91,7 +91,8 @@
                             '</a>',
                             '<a href="{{ route('api.shop') }}" title="Usuń" class="remove icon" data-id="' + row.id + '">',
                             '   <i class="bi bi-trash"></i>',
-                            '</a>'].join('');
+                            '</a>'
+                        ].join('');
                         return view_button;
                     }
                     window.actionsEvents = {
